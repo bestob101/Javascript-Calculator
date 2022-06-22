@@ -92,8 +92,89 @@ function convertToEquationToArrayHelper(equation) {
 
 }
 
-let str = "2.45-3.4 * 41 + 5";
+function evaluate(equation) {
+
+    if (equation[0] === '-') {
+        let num = equation[0] + equation[1];
+        equation.splice(0, 2, num);
+    }
+
+    if (!isValidEquation(equation)) {
+
+        return null;
+    }
+
+    var res = evaluateHelper(equation);
+
+    return res;
+}
+
+function evaluateHelper(equation) {
+
+    if (equation.length == 0)
+        return 0;
+
+    if (equation.length == 1)
+        return equation[0];
+
+    for (var i = 0; i < equation.length; i++) {
+        if (equation[i] === '*') {
+            let res = parseFloat(equation[i-1]) * parseFloat(equation[i+1]);
+            equation.splice(i-1, 3, res);
+            return evaluateSubEquation(equation);
+        }
+    }
+    
+    for (var i = 0; i < equation.length; i++) {
+        if (equation[i] === '/') {
+            let res = parseFloat(equation[i-1]) / parseFloat(equation[i+1]);
+            equation.splice(i-1, 3, res);
+            return evaluateSubEquation(equation);
+        }
+    }
+
+    for (var i = 0; i < equation.length; i++) {
+        if (equation[i] === '+') {
+            let res = parseFloat(equation[i-1]) + parseFloat(equation[i+1]);
+            equation.splice(i-1, 3, res);
+            return evaluateSubEquation(equation);
+        }
+    }
+
+    for (var i = 0; i < equation.length; i++) {
+        if (equation[i] === '-') {
+            let res = parseFloat(equation[i-1]) - parseFloat(equation[i+1]);
+            equation.splice(i-1, 3, res);
+            return evaluateSubEquation(equation);
+        }
+    }
+}
+
+function isValidEquation(equation) {
+
+    if (equation.length % 2 != 1) return false;
+
+    for (var i = 0; i < equation.length; i++) {
+
+        if ( !isNaN(equation[i]) && i % 2 != 0 ) return false;
+
+        if ( isOperand(equation[i]) && i % 2 != 1 ) return false;
+    }
+
+    return true;
+}
+
+function isOperand(character) {
+
+    if (character === '+' || character === '-' || character === '*' || character === '/')
+        return true;
+    
+    return false;
+}
+
+let str = "21.2 - 1 + 4";
 
 const arr = convertEquationToArray(str);
 
-console.log(arr);
+console.log(isValidEquation(arr));
+
