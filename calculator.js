@@ -125,19 +125,26 @@ function evaluateHelper(equation) {
     if (equation.length == 1)
         return equation[0];
 
-    for (var i = 0; i < equation.length; i++) {
-        if (equation[i] === '*') {
-            let res = parseFloat(equation[i-1]) * parseFloat(equation[i+1]);
-            equation.splice(i-1, 3, res);
-            return evaluateHelper(equation);
-        }
-    }
-    
-    for (var i = 0; i < equation.length; i++) {
-        if (equation[i] === '/') {
-            let res = parseFloat(equation[i-1]) / parseFloat(equation[i+1]);
-            equation.splice(i-1, 3, res);
-            return evaluateHelper(equation);
+    var i = 0;
+    while (i < equation.length) {
+        var operation = equation[i];
+        
+        switch (operation) {
+
+            case '*':
+                var res = parseFloat(equation[i-1]) * parseFloat(equation[i+1]);
+                equation.splice(i-1, 3, res);
+                return evaluateHelper(equation);
+                break;
+            
+            case '/':
+                var res = parseFloat(equation[i-1]) / parseFloat(equation[i+1]);
+                equation.splice(i-1, 3, res);
+                return evaluateHelper(equation);
+                break;
+
+            default:
+                i++;
         }
     }
 
@@ -173,7 +180,7 @@ function isOperand(character) {
     return false;
 }
 
-let str = "10/2 * 2.5";
+let str = "10 / 2 * 3";
 
 const arr = convertEquationToArray(str);
 
