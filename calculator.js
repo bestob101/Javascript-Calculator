@@ -180,13 +180,17 @@ function isOperand(character) {
     return false;
 }
 
-let str = "10 / 2 * 3";
+function compute(equation) {
 
-const arr = convertEquationToArray(str);
+    const equationArray = convertEquationToArray(equation);
 
-console.log(arr);
-var res = evaluate(arr);
-console.log(isValidEquation(arr));
-console.log(res);
+    if (equationArray === "Error") return equationArray;
+
+    else {
+        return evaluate(equationArray);
+    }
+}
+
+export { compute };
 
 
