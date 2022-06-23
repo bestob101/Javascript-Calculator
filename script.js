@@ -9,8 +9,6 @@ dataButtons.forEach(button => {
     })
 })
 
-equal
-
 function updateDisplay(text) {
 
     output.innerHTML += text;
