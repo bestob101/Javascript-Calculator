@@ -99,6 +99,14 @@ function evaluate(equation) {
         equation.splice(0, 2, num);
     }
 
+    for (var i = 0; i < equation.length; i++) {
+
+        if (equation[i] === '-') {
+            var num = equation[i] + equation[i+1];
+            equation[i] = '+';
+            equation[i+1] = num;
+        }
+    }
     if (!isValidEquation(equation)) {
 
         return null;
@@ -121,7 +129,7 @@ function evaluateHelper(equation) {
         if (equation[i] === '*') {
             let res = parseFloat(equation[i-1]) * parseFloat(equation[i+1]);
             equation.splice(i-1, 3, res);
-            return evaluateSubEquation(equation);
+            return evaluateHelper(equation);
         }
     }
     
@@ -129,7 +137,7 @@ function evaluateHelper(equation) {
         if (equation[i] === '/') {
             let res = parseFloat(equation[i-1]) / parseFloat(equation[i+1]);
             equation.splice(i-1, 3, res);
-            return evaluateSubEquation(equation);
+            return evaluateHelper(equation);
         }
     }
 
@@ -137,7 +145,7 @@ function evaluateHelper(equation) {
         if (equation[i] === '+') {
             let res = parseFloat(equation[i-1]) + parseFloat(equation[i+1]);
             equation.splice(i-1, 3, res);
-            return evaluateSubEquation(equation);
+            return evaluateHelper(equation);
         }
     }
 
@@ -145,7 +153,7 @@ function evaluateHelper(equation) {
         if (equation[i] === '-') {
             let res = parseFloat(equation[i-1]) - parseFloat(equation[i+1]);
             equation.splice(i-1, 3, res);
-            return evaluateSubEquation(equation);
+            return evaluateHelper(equation);
         }
     }
 }
@@ -172,9 +180,13 @@ function isOperand(character) {
     return false;
 }
 
-let str = "21.2 - 1 + 4";
+let str = "-21.2 - 1 + 4";
 
 const arr = convertEquationToArray(str);
 
+console.log(arr);
+var res = evaluate(arr);
 console.log(isValidEquation(arr));
+console.log(res);
+
 
