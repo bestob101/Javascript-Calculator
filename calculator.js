@@ -149,13 +149,6 @@ function evaluateHelper(equation) {
         }
     }
 
-    for (var i = 0; i < equation.length; i++) {
-        if (equation[i] === '-') {
-            let res = parseFloat(equation[i-1]) - parseFloat(equation[i+1]);
-            equation.splice(i-1, 3, res);
-            return evaluateHelper(equation);
-        }
-    }
 }
 
 function isValidEquation(equation) {
@@ -180,7 +173,7 @@ function isOperand(character) {
     return false;
 }
 
-let str = "-21.2 - 1 + 4";
+let str = "10/2 * 2.5";
 
 const arr = convertEquationToArray(str);
 
