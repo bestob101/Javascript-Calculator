@@ -3,6 +3,7 @@ import { compute } from './calculator.js';
 const dataButtons = document.querySelectorAll(".data");
 const equalButton = document.querySelector(".equals-button");
 const output = document.querySelector(".screen-output");
+const clearAllButton = document.querySelector(".clear-all");
 
 var equation = "";
 
@@ -20,9 +21,18 @@ equalButton.addEventListener('click', () => {
     equation = res;
 })
 
+clearAllButton.addEventListener('click', () => {
+    clearDisplay();
+})
 function updateDisplay(text) {
 
     output.innerText = text;
+}
+
+function clearDisplay() {
+
+    equation = "";
+    updateDisplay(equation);
 }
 
 
