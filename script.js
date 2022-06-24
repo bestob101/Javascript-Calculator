@@ -36,5 +36,6 @@ function clearDisplay() {
 }
 
 /* test commit */
+/* test commit 2 */
 
 
