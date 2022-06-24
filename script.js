@@ -35,4 +35,6 @@ function clearDisplay() {
     updateDisplay(equation);
 }
 
+/* test commit */
+
 
