@@ -35,8 +35,5 @@ function clearDisplay() {
     updateDisplay(equation);
 }
 
-/* test commit */
-/* test commit 2 */
-/* test commit 3 */
 
 

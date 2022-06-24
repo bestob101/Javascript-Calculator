@@ -1,0 +1,45 @@
+
+.calculator {
+
+    width: fit-content;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+}
+.screen-output {
+
+    height: 4rem;
+    background-color: mediumturquoise;
+}
+
+button {
+    background-color: cornflowerblue;
+
+}
+
+.buttons {
+
+    background-color: bisque;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.clear-all {
+
+    grid-column: 1/3;
+}
+
+.equals-button {
+
+    grid-column: 3/5;
+}
+
+.data {
+    grid-row-start: 2/6;
+}
+
+.operand-buttons {
+    grid-column: 4/5;
+    grid-row: 1/5;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
