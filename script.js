@@ -1,29 +1,39 @@
-import { compute } from './calculator.js';
+import { Equation } from './calculator.mjs';
 
 const dataButtons = document.querySelectorAll(".data");
+const operandButtons = document.querySelectorAll(".operand");
 const equalButton = document.querySelector(".equals-button");
 const output = document.querySelector(".screen-output");
 const clearAllButton = document.querySelector(".clear-all");
 
-var equation = "";
+var expression = "";
 
 dataButtons.forEach(button => {
     button.addEventListener('click', () => {
-        equation += button.innerText;
-        updateDisplay(equation);
+        expression += button.innerText;
+        updateDisplay(expression);
+    })
+})
+
+operandButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        expression += " " + button.innerText + " ";
+        updateDisplay(expression)
     })
 })
 
 equalButton.addEventListener('click', () => {
-    equation = output.innerText;
-    var res = compute(equation);
+    expression = output.innerText;
+    const equation = new Equation(expression);
+    var res = equation.compute();
     updateDisplay(res);
-    equation = res;
+    expression = res;
 })
 
 clearAllButton.addEventListener('click', () => {
     clearDisplay();
 })
+
 function updateDisplay(text) {
 
     output.innerText = text;
@@ -31,8 +41,8 @@ function updateDisplay(text) {
 
 function clearDisplay() {
 
-    equation = "";
-    updateDisplay(equation);
+    expression = "";
+    updateDisplay(expression);
 }
 
 
