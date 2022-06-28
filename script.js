@@ -3,46 +3,59 @@ import { Equation } from './calculator.mjs';
 const dataButtons = document.querySelectorAll(".data");
 const operandButtons = document.querySelectorAll(".operand");
 const equalButton = document.querySelector(".equals-button");
-const output = document.querySelector(".screen-output");
+const currentOutput = document.querySelector(".current-output");
+const previousOutput = document.querySelector(".previous-output");
 const clearAllButton = document.querySelector(".clear-all");
 
-var expression = "";
+var currentExpression = "";
+var previousExpression = "";
 
 dataButtons.forEach(button => {
     button.addEventListener('click', () => {
-        expression += button.innerText;
-        updateDisplay(expression);
+        currentExpression += button.innerText;
+        updateDisplay(currentExpression, previousExpression);
     })
 })
 
 operandButtons.forEach(button => {
     button.addEventListener('click', () => {
-        expression += " " + button.innerText + " ";
-        updateDisplay(expression)
+        currentExpression += " " + button.innerText + " ";
+        updateDisplay(currentExpression, previousExpression)
     })
 })
 
 equalButton.addEventListener('click', () => {
-    expression = output.innerText;
-    const equation = new Equation(expression);
+    currentExpression = currentOutput.innerText;
+    const equation = new Equation(currentExpression);
     var res = equation.compute();
-    updateDisplay(res);
-    expression = res;
+
+    if (res === "Error") {
+        currentExpression = "";
+        updateDisplay("Error", previousExpression);
+    }
+    else {
+        previousExpression = currentExpression;
+        currentExpression = res;
+        updateDisplay(currentExpression, previousExpression);
+    }
+
 })
 
 clearAllButton.addEventListener('click', () => {
     clearDisplay();
 })
 
-function updateDisplay(text) {
+function updateDisplay(current, previous) {
 
-    output.innerText = text;
+    currentOutput.innerText = current;
+    previousOutput.innerText = previous;
 }
 
 function clearDisplay() {
 
-    expression = "";
-    updateDisplay(expression);
+    currentExpression = "";
+    previousExpression = "";
+    updateDisplay(currentExpression, previousExpression);
 }
 
 
