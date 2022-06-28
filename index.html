@@ -5,27 +5,41 @@
 
         <title>Calculator</title>
 
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
         <div class="calculator">
-            <div class="screen-output"></div>
-            <button class="data">1</button>
-            <button class="data">2</button>
-            <button class="data">3</button>
-            <button class="data">4</button>
-            <button class="data">5</button>
-            <button class="data">6</button>
-            <button class="data">7</button>
-            <button class="data">8</button>
-            <button class="data">9</button>
-            <button class="data">0</button>
-            <button class="data">.</button>
-            <button class="data">+</button>
-            <button class="data">-</button>
-            <button class="data">*</button>
-            <button class="data">/</button>
-            <button class="equals-button">=</button>
+            <div class="screen-output">
+                <div class="previous-output"></div>
+                <div class="current-output"></div>
+            </div>
+            <div class="keypads">
+
+                <button class="clear-all">CE</button>
+                <button class="backspace">DEL</button>
+                
+                <button class="data">1</button>
+                <button class="data">2</button>
+                <button class="data">3</button>
+                <button class="data">4</button>
+                <button class="data">5</button>
+                <button class="data">6</button>
+                <button class="data">7</button>
+                <button class="data">8</button>
+                <button class="data">9</button>
+                <button class="data">0</button>
+                <button class="data">.</button>
+
+                <div class="operand-buttons">
+                    <button class="operand">+</button>
+                    <button class="operand">-</button>
+                    <button class="operand">*</button>
+                    <button class="operand">/</button>
+                </div>
+                <button class="equals-button">=</button>
+            </div>
+    
         </div>
     </body>
     <script type="module" src="script.js"></script>

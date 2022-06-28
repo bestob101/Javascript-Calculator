@@ -1,0 +1,84 @@
+body {
+
+    background-color: rgb(39, 39, 39);
+}
+.calculator {
+    background-color: rgb(26, 26, 26);
+    width: 20em;
+    height: 30em;
+    display: grid;
+    grid-template-rows: 1.4fr 5fr;
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 10% auto;
+}
+
+.screen-output {
+    color: white;
+    text-align: right;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding: .5rem;
+}
+
+.current-output {
+    /*background-color: blueviolet;*/
+    font-size: 26pt;
+    padding: .2rem 0 0;
+}
+
+.previous-output {
+    /*background-color: rgb(17, 13, 78);*/
+    font-size: 15pt;
+    color:rgb(184, 184, 184);
+    padding-top: .4rem
+}
+
+button {
+    background: linear-gradient(to bottom right, rgb(26, 26, 26), rgb(68, 68, 68));
+    font-size: 15pt;
+    color: white;
+    height: 100%;
+    width: 100%;
+    border: none;
+    box-shadow: .2rem 0rem .2rem rgba(0, 0, 0, 25%);
+    transition: filter .5s;
+} 
+
+button:hover {
+
+    filter: brightness(1.3);
+}
+
+button:active {
+    filter: brightness(1.7);
+}
+
+.keypads {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: .5rem;
+    padding: .5rem;
+}
+
+.clear-all {
+
+    grid-column: 1/3;
+    background: linear-gradient(to bottom right, rgb(63, 10, 10), rgb(136, 32, 32));
+}
+
+.equals-button {
+
+    grid-column: 3/5;
+}
+
+.data {
+    grid-row-start: 2/6;
+}
+
+.operand-buttons {
+    grid-column: 4/5;
+    grid-row: 1/5;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: inherit;
+}
