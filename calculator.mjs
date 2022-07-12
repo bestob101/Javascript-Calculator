@@ -46,10 +46,24 @@ class Equation {
             }
         }
 
-        for (var i = 0; i < expressionArray.length; i++) {
-            if (expressionArray[i] === '+') {
-                let res = parseFloat(expressionArray[i-1]) + parseFloat(expressionArray[i+1]);
-                expressionArray.splice(i-1, 3, res);
+        i = 0;
+        while (i < expressionArray.length) {
+            var operation = expressionArray[i];
+            
+            switch (operation) {
+
+                case '+':
+                    var res = parseFloat(expressionArray[i-1]) + parseFloat(expressionArray[i+1]);
+                    expressionArray.splice(i-1, 3, res);
+                    break;
+                
+                case '-':
+                    var res = parseFloat(expressionArray[i-1]) - parseFloat(expressionArray[i+1]);
+                    expressionArray.splice(i-1, 3, res);
+                    break;
+
+                default:
+                    i++;
             }
         }
 
@@ -92,6 +106,12 @@ class Equation {
 
             if (!isNaN(expressionParts[i]) || expressionParts[i] === '.') {
 
+                if (expressionParts[i] === '.') {
+                    if (containsDecimal) return "Error";
+                } else {
+                    containsDecimal = true;
+                }
+                
                 numberString += expressionParts[i];
 
                 if (i == expressionParts.length - 1) {
@@ -107,12 +127,14 @@ class Equation {
             expressionArray.splice(0, 2, num);
         }
     
-        for (var i = 0; i < expressionArray.length; i++) {
+        for (var i = 1; i < expressionArray.length; i++) {
     
             if (expressionArray[i] === '-') {
-                var num = expressionArray[i] + expressionArray[i+1];
-                expressionArray[i] = '+';
-                expressionArray[i+1] = num;
+
+                if (this.#isOperand(expressionArray[i-1])) {
+                    var num = expressionArray[i] + expressionArray[i+1];
+                    expressionArray.splice(i, 2, num);
+                }
             }
         }
 
